@@ -46,7 +46,7 @@ int main()
             display_bus_routes();
             // variables to save the path chosen
 
-            printf("Please enter your the route number: \n");
+            printf("\nPlease enter your the route number: \n");
             scanf("%d", &route_num);
 
             printf("Please enter the bus number: \n");
@@ -55,11 +55,10 @@ int main()
             // FIXME: Make this function work after recieving bus number
             // NOTE: check for the next pointer in the funciton if it is null.
             // BUG: Code does not work pass here.
-            display_seat_available(route_num, bus_num);
             int seat;
-
             printf("Please enter your seat of choice: \n");
             scanf("%d", &seat);
+
             if (seat_decision == 1)
             {
                 book_seat(route_num, bus_num, seat);

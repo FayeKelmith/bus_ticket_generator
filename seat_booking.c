@@ -9,8 +9,10 @@
 void book_seat(int route_choice, int bus_choice, int seat_choice)
 {
     // I will create a pointer to the bus route list
-    struct bus_route *bus_route_list_pointer = bus_route_list;
+    struct bus_route *bus_route_list_pointer = (struct bus_route *)malloc(sizeof(struct bus_route));
+    bus_route_list_pointer = bus_route_list;
     // I will create a loop to find the bus route
+
     while (bus_route_list_pointer != NULL)
     {
 
@@ -18,11 +20,14 @@ void book_seat(int route_choice, int bus_choice, int seat_choice)
         {
 
             // I will create a pointer to the bus list
-            struct bus *bus_list_pointer = bus_route_list_pointer->bus_list;
+            struct bus *bus_list_pointer = (struct bus *)malloc(sizeof(struct bus));
+            bus_list_pointer = bus_route_list_pointer->bus_list;
             // I will create a loop to find the bus
+            bus_list_pointer == NULL ? printf("I am null") : printf("Not null");
+            // FIXME: the bus_list_pointer is null, I need to fix this
             while (bus_list_pointer != NULL)
             {
-
+                printf("I succesfully found the bus number too"); // NOTE:to be deleted
                 if (bus_list_pointer->bus_number == bus_choice)
                 {
                     // I will create a loop to find the seat
@@ -43,6 +48,8 @@ void book_seat(int route_choice, int bus_choice, int seat_choice)
                             else
                             {
                                 printf("\nSeat is already booked. Please try again.\n");
+                                // I will break the loop
+                                break;
                             }
                         }
                     }
@@ -51,11 +58,17 @@ void book_seat(int route_choice, int bus_choice, int seat_choice)
                 // I will move the pointer to the next bus
                 bus_list_pointer = bus_list_pointer->next;
             }
+            // I will update the bus list and free memory
+            bus_route_list_pointer->bus_list = bus_list_pointer;
+            free(bus_list_pointer);
         }
 
         // I will move the pointer to the next bus route
         bus_route_list_pointer = bus_route_list_pointer->next;
-        }
+    }
+    // Update the bus route list and free memore
+    bus_route_list = bus_route_list_pointer;
+    free(bus_route_list_pointer);
 }
 
 // I will create a function to cancel a seat by changing the seat choice from 1 to 0
@@ -95,6 +108,7 @@ void cancel_seat(int route_num, int bus_num, int seat_choice)
                             else
                             {
                                 printf("\nSeat is already available. Please try again.\n");
+                                break;
                             }
                         }
                     }
@@ -102,6 +116,7 @@ void cancel_seat(int route_num, int bus_num, int seat_choice)
                 else
                 {
                     printf("\nSorry this bus does not exist!\n");
+                    break;
                 }
                 // I will move the pointer to the next bus
                 bus_list_pointer = bus_list_pointer->next;
@@ -111,6 +126,7 @@ void cancel_seat(int route_num, int bus_num, int seat_choice)
         else
         {
             printf("\nBus route does not exist!\n");
+            break;
         }
         // I will move the pointer to the next bus route
         bus_route_list_pointer = bus_route_list_pointer->next;
@@ -145,16 +161,20 @@ void display_seat_available(int route_num, int bus_num)
                             printf("%d ", i + 1);
                         }
                     }
+                    // Move to the next line
+                    printf("\n");
                 }
                 else
                 {
                     printf("Sorry bus does not exist!\n");
+                    break;
                 }
             }
         }
         else
         {
             printf("Sorry bus route does not exist!\n");
+            break;
         }
     }
 }

@@ -61,13 +61,13 @@ void initialize_bus_route_list()
     // I will create a new bus route
     struct bus_route *new_bus_route = (struct bus_route *)malloc(sizeof(struct bus_route));
     // I will initialize the place of origin
-    strcpy(new_bus_route->place_of_origin, "Nairobi");
+    strcpy(new_bus_route->place_of_origin, "Mumbai");
     // I will initialize the destination
-    strcpy(new_bus_route->destination, "Mombasa");
+    strcpy(new_bus_route->destination, "Delhi");
     // I will initialize the bus route number
     new_bus_route->bus_route_number = 1;
     // I will initialize the bus fare
-    new_bus_route->bus_fare = 1000;
+    new_bus_route->bus_fare = 2000;
     // I will initialize the approx travel time
     new_bus_route->approx_travel_time = 6;
     // I will initialize the bus list
