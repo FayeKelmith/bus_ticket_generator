@@ -93,7 +93,7 @@ void add_bus(struct bus_route *bus_route_list)
     scanf("%d", &new_bus->bus_capacity);
     // I will add the new bus to the bus list
     new_bus->next = NULL;
-    bus_route_list->bus_list = new_bus;
+    bus_route_list->bus_list->next = new_bus;
 }
 
 // I will create a function to add a bus route
@@ -112,14 +112,16 @@ void add_bus_route()
     scanf("%d", &new_bus_route->bus_route_number);
 
     // I will ask the user to enter the approximate travel time
-    printf("Enter the approximate travel time");
+    printf("Enter the approximate travel time: ");
     scanf("%d", &new_bus_route->approx_travel_time);
     // I will ask the user to enter the bus fare
     printf("Enter the bus fare: ");
     scanf("%d", &new_bus_route->bus_fare);
     // I will add the new bus route to the bus route list
     new_bus_route->next = NULL;
-    bus_route_list = new_bus_route;
+    // I will like to add a bus directly
+    add_bus(new_bus_route);
+    bus_route_list->next = new_bus_route;
 }
 
 // I will create a function to delete a bus route
@@ -200,6 +202,7 @@ void display_bus_routes()
                 if (bus_route_list_pointer->bus_list->seats_available[i] == 0)
                     printf("%d ", i + 1);
             }
+            printf("\n");
             bus_route_list_pointer->bus_list = bus_route_list_pointer->bus_list->next;
         }
         bus_route_list_pointer = bus_route_list_pointer->next;
@@ -211,7 +214,7 @@ void update_bus_details(struct bus_route *bus_route_list)
 {
     // I will ask the user for route number
     int route_number;
-    printf("Enter the route number: ");
+    printf("Enter the route number: \n");
     scanf("%d", &route_number);
     // I will create a pointer to the bus route list
     struct bus_route *bus_route_list_pointer = bus_route_list;
@@ -223,7 +226,7 @@ void update_bus_details(struct bus_route *bus_route_list)
         {
             // I will ask the user to enter the bus number
             int bus_number;
-            printf("Enter the bus number: ");
+            printf("Enter the bus number: \n");
             scanf("%d", &bus_number);
             // I will create a pointer to the bus list
             struct bus *bus_list_pointer = bus_route_list_pointer->bus_list;
@@ -234,11 +237,11 @@ void update_bus_details(struct bus_route *bus_route_list)
                 if (bus_list_pointer->bus_number == bus_number)
                 {
                     // I will ask the user to enter the bus name
-                    printf("Enter the bus name: ");
+                    printf("Enter the bus name: \n");
                     scanf("%s", bus_list_pointer->bus_name);
 
                     // I will ask the user to enter the bus capacity
-                    printf("Enter the bus capacity: ");
+                    printf("Enter the bus capacity: \n");
                     scanf("%d", &bus_list_pointer->bus_capacity);
 
                     // I will break the loop
@@ -303,7 +306,7 @@ void delete_bus(struct bus_route *bus_route_list)
 {
     // I will ask the user for route number
     int route_number;
-    printf("Enter the route number: ");
+    printf("Enter the route number: \n");
     scanf("%d", &route_number);
     // I will create a pointer to the bus route list
     struct bus_route *bus_route_list_pointer = bus_route_list;
@@ -315,7 +318,7 @@ void delete_bus(struct bus_route *bus_route_list)
         {
             // I will ask the user to enter the bus number
             int bus_number;
-            printf("Enter the bus number: ");
+            printf("Enter the bus number: \n");
             scanf("%d", &bus_number);
             // I will create a pointer to the bus list
             struct bus *bus_list_pointer = bus_route_list_pointer->bus_list;

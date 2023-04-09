@@ -20,11 +20,13 @@ void book_seat(int route_choice, int bus_choice, int seat_choice)
         {
 
             // I will create a pointer to the bus list
+            // NOTE: Uncomment this if it doesn't work
             struct bus *bus_list_pointer = (struct bus *)malloc(sizeof(struct bus));
             bus_list_pointer = bus_route_list_pointer->bus_list;
             // I will create a loop to find the bus
             bus_list_pointer == NULL ? printf("I am null") : printf("Not null");
             // FIXME: the bus_list_pointer is null, I need to fix this
+
             while (bus_list_pointer != NULL)
             {
                 printf("I succesfully found the bus number too"); // NOTE:to be deleted
